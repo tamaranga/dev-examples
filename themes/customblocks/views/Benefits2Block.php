@@ -10,31 +10,31 @@ use bff\view\Block;
  */
 class Benefits2Block extends Block
 {
-    /** @var string Изображение левого блока */
+    /** @var string Left block image */
     public $main_image = '';
 
-    /** @var string Описание под изображением */
+    /** @var string Description under image */
     public $description = '';
 
-    /** @var string Цвет фона блока */
+    /** @var string Block background color */
     public $background_color = '#FFA500';
 
-    /** @var array Список преимуществ */
+    /** @var array Benefits list */
     public $benefits = [];
 
     public function data()
     {
         $data = parent::data();
 
-        // Проверяем есть ли контент для отображения
+        // Check if there's content to display
         $hasContent = false;
 
-        // Проверяем изображение или описание
+        // Check image or description
         if (!empty($this->main_image) || !empty($this->description)) {
             $hasContent = true;
         }
 
-        // Проверяем преимущества
+        // Check benefits
         $validBenefits = 0;
         foreach ($this->benefits as $benefit) {
             if (!empty($benefit['title']) || !empty($benefit['description'])) {
@@ -46,7 +46,7 @@ class Benefits2Block extends Block
             $hasContent = true;
         }
 
-        // Если нет контента, не показываем блок
+        // If no content, don't show block
         if (!$hasContent) {
             return false;
         }
@@ -56,7 +56,7 @@ class Benefits2Block extends Block
 
     public function settingsForm($form)
     {
-        // Настройки левого блока
+        // Left block settings
         $form->wysiwyg('description', $this->extension->langAdmin('Description'), [
             'en' => '<strong>Special machinery</strong> — <br> search for sellers of special equipment, trucks and spare parts',
             'ru' => '<strong>Special machinery</strong> — <br> поиск продавцов спецтехники, грузовиков и запчастей'
@@ -66,19 +66,19 @@ class Benefits2Block extends Block
 
         $form->color('background_color', $this->extension->langAdmin('Background Color'), '#FFA500');
 
-        // Группа преимуществ
+        // Benefits group
         $form->group('benefits', $this->extension->langAdmin('Add Benefit'), $this->extension->langAdmin('Benefits List'), ['plus' => ['type' => 'href', 'position' => 'after']])
 
-            // Иконка преимущества
+            // Benefit icon
             ->images('icon', $this->extension->langAdmin('Benefit Icon'), 1)
 
-            // Заголовок преимущества
+            // Benefit title
             ->text('title', $this->extension->langAdmin('Benefit Title'))->placeholder($this->extension->langAdmin('Enter benefit title'))
 
-            // Описание преимущества
+            // Benefit description
             ->wysiwyg('description', $this->extension->langAdmin('Benefit Description'))->placeholder($this->extension->langAdmin('Enter benefit description'))
 
-            // Предустановленные преимущества
+            // Preset benefits
             ->preload([
                 'icon' => $this->extension->path('/static/img/benefits/star.svg'),
                 'title' => [

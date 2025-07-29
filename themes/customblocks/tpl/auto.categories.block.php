@@ -2,9 +2,9 @@
 /**
  * Categories with Image Block
  * @see \themes\customblocks\views\AutoCategoriesBlock
- * @var $block_enabled bool Включен ли блок
- * @var $main_image string URL основного изображения
- * @var $sections array Список секций [['title' => 'Название', 'link' => 'URL', 'icon' => 'Icon URL'], ...]
+ * @var $block_enabled bool Whether the block is enabled
+ * @var $main_image string Main image URL
+ * @var $sections array List of sections [['title' => 'Title', 'link' => 'URL', 'icon' => 'Icon URL'], ...]
  */
 ?>
 <?php if ($block_enabled && (!empty($main_image) || !empty($sections))) { ?>

@@ -2,16 +2,16 @@
 /**
  * Custom Categories Block
  * @see \themes\customblocks\views\CategoriesBlock
- * @var $block_logo string URL общего логотипа блока (SVG/PNG)
- * @var $left_enabled bool Включен ли левый блок категорий
- * @var $left_title string Заголовок левого блока
- * @var $left_links array Массив ссылок левого блока [['title' => 'Название', 'link' => 'URL'], ...]
- * @var $right_enabled bool Включен ли правый блок категорий
- * @var $right_title string Заголовок правого блока
- * @var $right_links array Массив ссылок правого блока [['title' => 'Название', 'link' => 'URL'], ...]
- * @var $bottom_enabled bool Включен ли нижний блок предложений
- * @var $bottom_title string Заголовок нижнего блока
- * @var $bottom_links array Массив ссылок нижнего блока [['title' => 'Название', 'link' => 'URL'], ...]
+ * @var $block_logo string General block logo URL (SVG/PNG)
+ * @var $left_enabled bool Whether left categories block is enabled
+ * @var $left_title string Left block title
+ * @var $left_links array Array of left block links [['title' => 'Title', 'link' => 'URL'], ...]
+ * @var $right_enabled bool Whether right categories block is enabled
+ * @var $right_title string Right block title
+ * @var $right_links array Array of right block links [['title' => 'Title', 'link' => 'URL'], ...]
+ * @var $bottom_enabled bool Whether bottom suggestions block is enabled
+ * @var $bottom_title string Bottom block title
+ * @var $bottom_links array Array of bottom block links [['title' => 'Title', 'link' => 'URL'], ...]
  */
 ?>
 <div class="cb-box">
