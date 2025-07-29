@@ -10,13 +10,13 @@ use bff\view\Block;
  */
 class AutoCategoriesBlock extends Block
 {
-    /** @var bool Включен ли блок */
+    /** @var bool Whether the block is enabled */
     public $block_enabled = true;
 
-    /** @var string URL основного изображения */
+    /** @var string Main image URL */
     public $main_image = '';
 
-    /** @var array Список секций категорий */
+    /** @var array List of category sections */
     public $sections = [];
 
     public function init()
@@ -32,15 +32,15 @@ class AutoCategoriesBlock extends Block
     {
         $data = parent::data();
 
-        // Проверяем есть ли контент для отображения
+        // Check if there is content to display
         $hasContent = false;
 
-        // Проверяем основное изображение
+        // Check main image
         if (!empty($this->main_image)) {
             $hasContent = true;
         }
 
-        // Проверяем секции категорий
+        // Check category sections
         $validSections = 0;
         foreach ($this->sections as $section) {
             if (!empty($section['title'])) {
@@ -52,7 +52,7 @@ class AutoCategoriesBlock extends Block
             $hasContent = true;
         }
 
-        // Если нет контента или блок отключен, не показываем
+        // If no content or block is disabled, don't show
         if (!$this->block_enabled || !$hasContent) {
             return false;
         }
@@ -62,19 +62,19 @@ class AutoCategoriesBlock extends Block
 
     public function settingsForm($form)
     {
-        // Основные настройки блока
+        // Basic block settings
         $form
             ->checkbox('block_enabled', _t('@', 'Enabled'), true)
             ->boundaryInit(['title' => _t('@site', 'Categories with Img Block')]);
 
-        // Основное изображение
+        // Main image
         $form
             ->images('main_image', _t('@site', 'Main Image'), 1)
             ->preload($this->extension->path('/static/img/mini-orange.png'))
             ->boundaryIn('block_enabled')
             ->visibleIf('block_enabled', true);
 
-        // Секции категорий
+        // Category sections
         $form
             ->group(
                 'sections',
@@ -85,17 +85,17 @@ class AutoCategoriesBlock extends Block
             ->boundaryIn('block_enabled')
             ->visibleIf('block_enabled', true)
 
-            // Иконка категории
+            // Category icon
             ->images('icon', _t('@site', 'Category Icon'), 1)
-            // Название категории
+            // Category name
             ->text('title', _t('@', 'Category Title'))
             ->placeholder(_t('@site', 'Enter category name'))
 
-            // Ссылка категории
+            // Category link
             ->text('link', _t('@site', 'Category Link'))
             ->placeholder(_t('@site', 'Enter category URL'))
 
-            // Предустановленные категории
+            // Preset categories
             ->preload([
                 'icon' => $this->extension->path('/static/img/categories/car.svg'),
                 'title' => [

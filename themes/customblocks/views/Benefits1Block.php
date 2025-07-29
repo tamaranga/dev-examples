@@ -10,31 +10,31 @@ use bff\view\Block;
  */
 class Benefits1Block extends Block
 {
-    /** @var string Заголовок блока */
+    /** @var string Block title */
     public $title = '';
 
-    /** @var string Иконка заголовка */
+    /** @var string Title icon */
     public $title_icon = '';
 
-    /** @var string Цвет фона блока */
+    /** @var string Block background color */
     public $icons_color = '#f15833';
 
-    /** @var array Список преимуществ */
+    /** @var array List of benefits */
     public $benefits = [];
 
     public function data()
     {
         $data = parent::data();
 
-        // Проверяем есть ли контент для отображения
+        // Check if there is content to display
         $hasContent = false;
 
-        // Проверяем заголовок
+        // Check title
         if (!empty($this->title)) {
             $hasContent = true;
         }
 
-        // Проверяем преимущества
+        // Check benefits
         $validBenefits = 0;
         foreach ($this->benefits as $benefit) {
             if (!empty($benefit['title']) || !empty($benefit['description'])) {
@@ -46,7 +46,7 @@ class Benefits1Block extends Block
             $hasContent = true;
         }
 
-        // Если нет контента, не показываем блок
+        // If no content, don't show block
         if (!$hasContent) {
             return false;
         }
@@ -56,26 +56,26 @@ class Benefits1Block extends Block
 
     public function settingsForm($form)
     {
-        // Основной заголовок блока
+        // Main block title
         $form->text('title', $this->extension->langAdmin('Block Title'), [
             'en' => 'Why you should search with us',
             'ru' => 'Почему стоит искать автомобиль именно у нас'
         ])->images('title_icon', $this->extension->langAdmin('Title Icon'), 1)->preload($this->extension->path('/static/img/like-icon.svg'));
         $form->color('icons_color', $this->extension->langAdmin('Icons Color'), '#FFA500');
 
-        // Группа преимуществ
+        // Benefits group
         $form->group('benefits', $this->extension->langAdmin('Add Benefit'), $this->extension->langAdmin('Benefits List'), ['plus' => ['type' => 'href', 'position' => 'after']])
 
-            // Иконка преимущества
+            // Benefit icon
             ->images('icon', $this->extension->langAdmin('Benefit Icon'), 1)
 
-            // Заголовок преимущества
+            // Benefit title
             ->text('title', $this->extension->langAdmin('Benefit Title'))->placeholder($this->extension->langAdmin('Enter benefit title'))
 
-            // Описание преимущества
+            // Benefit description
             ->wysiwyg('description', $this->extension->langAdmin('Benefit Description'))->placeholder($this->extension->langAdmin('Enter benefit description'))
 
-            // Предустановленные преимущества
+            // Preset benefits
             ->preload([
                 'icon' => $this->extension->path('/static/img/benefits/car.svg'),
                 'title' => [

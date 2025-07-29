@@ -12,31 +12,31 @@ use Site;
  */
 class Banner1Block extends Block
 {
-    /** @var bool Включен ли баннер */
+    /** @var bool Is banner enabled */
     public $banner_enabled = true;
 
-    /** @var string Текст баннера */
+    /** @var string Banner text */
     public $banner_text = '';
 
-    /** @var string Цвет фона баннера */
+    /** @var string Banner background color */
     public $banner_background = '#6366f1';
 
-    /** @var string Цвет текста баннера */
+    /** @var string Banner text color */
     public $banner_text_color = '#ffffff';
 
-    /** @var bool Включена ли кнопка */
+    /** @var bool Is button enabled */
     public $button_enabled = true;
 
-    /** @var string Текст кнопки */
+    /** @var string Button text */
     public $button_text = '';
 
-    /** @var string URL кнопки */
+    /** @var string Button URL */
     public $button_url = '';
 
-    /** @var string Цвет фона кнопки */
+    /** @var string Button background color */
     public $button_background = '#f97316';
 
-    /** @var string Цвет текста кнопки */
+    /** @var string Button text color */
     public $button_text_color = '#ffffff';
 
     public function init()
@@ -52,7 +52,7 @@ class Banner1Block extends Block
     {
         $data = parent::data();
 
-        // Обработка макросов для URL кнопки
+        // Process macros for button URL
         if (!empty($this->button_url)) {
             $macros = $this->macros();
             $data['button_url'] = strtr($this->button_url, $macros);
@@ -63,7 +63,7 @@ class Banner1Block extends Block
 
     public function settingsForm($form)
     {
-        // Основные настройки баннера
+        // Main banner settings
         $form
             ->checkbox('banner_enabled', $this->extension->langAdmin('Enabled'), true)
             ->boundaryInit(['title' => $this->extension->langAdmin('Banner Settings')])
@@ -80,7 +80,7 @@ class Banner1Block extends Block
             ->boundaryIn('banner_enabled')
             ->visibleIf('banner_enabled', true);
 
-        // Настройки кнопки
+        // Button settings
         $form
             ->checkbox('button_enabled', $this->extension->langAdmin('Enabled'), true)
             ->boundaryInit(['title' => $this->extension->langAdmin('Button Settings')])
@@ -123,7 +123,7 @@ class Banner1Block extends Block
     }
 
     /**
-     * Макросы для подстановки в ссылки
+     * Macros for link substitution
      */
     public function macros()
     {

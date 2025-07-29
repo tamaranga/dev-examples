@@ -12,28 +12,28 @@ use Site;
  */
 class CategoriesBlock extends Block
 {
-    /** @var string Общий логотип блока */
+    /** @var string General block logo */
     public $block_logo = '';
 
-    /** @var bool Включен левый блок категорий */
+    /** @var bool Left categories block enabled */
     public $left_enabled = true;
-    /** @var string Заголовок левого блока */
+    /** @var string Left block title */
     public $left_title = '';
-    /** @var array Ссылки левого блока */
+    /** @var array Left block links */
     public $left_links = [];
 
-    /** @var bool Включен правый блок категорий */
+    /** @var bool Right categories block enabled */
     public $right_enabled = true;
-    /** @var string Заголовок правого блока */
+    /** @var string Right block title */
     public $right_title = '';
-    /** @var array Ссылки правого блока */
+    /** @var array Right block links */
     public $right_links = [];
 
-    /** @var bool Включен нижний блок */
+    /** @var bool Bottom block enabled */
     public $bottom_enabled = true;
-    /** @var string Заголовок нижнего блока */
+    /** @var string Bottom block title */
     public $bottom_title = '';
-    /** @var array Ссылки нижнего блока */
+    /** @var array Bottom block links */
     public $bottom_links = [];
 
     public function init()
@@ -48,7 +48,7 @@ class CategoriesBlock extends Block
     {
         $data = parent::data();
 
-        // Обработка макросов для всех ссылок
+        // Process macros for all links
         $macros = $this->macros();
 
         if ($this->left_enabled && !empty($this->left_links)) {
@@ -77,10 +77,10 @@ class CategoriesBlock extends Block
 
     public function settingsForm($form)
     {
-        // Общие настройки блока
+        // General block settings
         $form->images('block_logo', $this->extension->langAdmin('Block Logo'), 1)->boundaryInit(['title' => $this->extension->langAdmin('General Settings')]);
 
-        // Левый блок категорий
+        // Left categories block
         $form->checkbox('left_enabled', $this->extension->langAdmin('Enabled'), true)->boundaryInit(['title' => $this->extension->langAdmin('Left Category Block')]);
 
         $form->text('left_title', $this->extension->langAdmin('Title'), [
@@ -93,7 +93,7 @@ class CategoriesBlock extends Block
             ->text('link', $this->extension->langAdmin('Link'))
             ->titleMacros($this->macros())
 
-            // Предустановленные ссылки для левого блока
+            // Preset links for left block
             ->preload([
                 'title' => [
                     'en' => 'Smartphones',
@@ -138,7 +138,7 @@ class CategoriesBlock extends Block
             ->boundaryIn('left_enabled')
             ->visibleIf('left_enabled', true);
 
-        // Правый блок категорий
+        // Right categories block
         $form->checkbox('right_enabled', $this->extension->langAdmin('Enabled'), true)->boundaryInit(['title' => $this->extension->langAdmin('Right Category Block')]);
 
         $form->text('right_title', $this->extension->langAdmin('Title'), [
@@ -151,7 +151,7 @@ class CategoriesBlock extends Block
             ->text('link', $this->extension->langAdmin('Link'))
             ->titleMacros($this->macros())
 
-            // Предустановленные ссылки для правого блока
+            // Preset links for right block
             ->preload([
                 'title' => [
                     'en' => 'Refrigerators',
@@ -196,7 +196,7 @@ class CategoriesBlock extends Block
             ->boundaryIn('right_enabled')
             ->visibleIf('right_enabled', true);
 
-        // Нижний блок
+        // Bottom block
         $form->checkbox('bottom_enabled', $this->extension->langAdmin('Enabled'), true)->boundaryInit(['title' => $this->extension->langAdmin('Bottom Suggestions Block')]);
 
         $form->text('bottom_title', $this->extension->langAdmin('Title'), [
@@ -209,7 +209,7 @@ class CategoriesBlock extends Block
             ->text('link', $this->extension->langAdmin('Link'))
             ->titleMacros($this->macros())
 
-            // Предустановленные ссылки для нижнего блока
+            // Preset links for bottom block
             ->preload([
                 'title' => [
                     'en' => 'Cycling',
@@ -276,7 +276,7 @@ class CategoriesBlock extends Block
     }
 
     /**
-     * Макросы для подстановки в ссылки
+     * Macros for link substitution
      */
     public function macros()
     {

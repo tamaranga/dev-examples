@@ -12,19 +12,19 @@ use Site;
  */
 class AdsPage extends Page
 {
-    /** @var string Горизонтальный баннер */
+    /** @var string Horizontal banner */
     public $horizontal_banner = '';
 
-    /** @var string URL для горизонтального баннера */
+    /** @var string URL for horizontal banner */
     public $horizontal_banner_url = '';
 
-    /** @var string Вертикальный баннер */
+    /** @var string Vertical banner */
     public $vertical_banner = '';
 
-    /** @var string URL для вертикального баннера */
+    /** @var string URL for vertical banner */
     public $vertical_banner_url = '';
 
-    /** @var string Контент статьи */
+    /** @var string Article content */
     public $article_content = '';
 
     public function init()
@@ -47,7 +47,7 @@ class AdsPage extends Page
 
         $this->breadcrumbs->add($this->titleh1);
 
-        // Обработка макросов для URL баннеров
+        // Process macros for banner URLs
         $macros = $this->macros();
 
         if (!empty($this->horizontal_banner_url)) {
@@ -74,7 +74,7 @@ class AdsPage extends Page
 
     public function settingsForm($form)
     {
-        // Настройки горизонтального баннера
+        // Horizontal banner settings
         $form
             ->images('horizontal_banner', $this->extension->langAdmin('Horizontal Banner'), 1)
             ->preload($this->extension->path('/static/img/banners/list-en.svg'))
@@ -86,7 +86,7 @@ class AdsPage extends Page
             ->titleMacros($this->macros())
             ->placeholder($this->extension->langAdmin('Enter banner URL'));
 
-        // Настройки вертикального баннера
+        // Vertical banner settings
         $form
             ->images('vertical_banner', $this->extension->langAdmin('Vertical Banner'), 1)
             ->preload($this->extension->path('/static/img/banners/aside-en.svg'))
@@ -98,7 +98,7 @@ class AdsPage extends Page
             ->titleMacros($this->macros())
             ->placeholder($this->extension->langAdmin('Enter banner URL'));
 
-        // Настройки контента статьи
+        // Article content settings
         $form
             ->wysiwyg('article_content', $this->extension->langAdmin('Article Content'), [
                 'en' => '<strong>Advertise Smarter with Marketplace Platform – Reach Your Ideal Audience Today!</strong>
@@ -142,7 +142,7 @@ class AdsPage extends Page
     }
 
     /**
-     * Макросы для подстановки в ссылки
+     * Macros for link substitution
      */
     public function macros()
     {
